@@ -1,0 +1,9 @@
+#!/bin/sh
+BGSELECT="#B294BB"
+FG="#6F7277"
+BG="#34322E"
+#BG="#85678F"
+FONT="-*-Inconsolata-*-*-*-*-9-*-*-*-*-*-*-*"
+#FONT="-*-lemon-*-*-*-*-16-*-*-*-*-*-*-*"
+FONT="-*-terminus-*-*-*-*-8-*-*-*-*-*-*-*"
+dmenu_run -fn ${FONT} -nb $BG -nf $FG -sb $BGSELECT

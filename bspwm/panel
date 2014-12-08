@@ -1,0 +1,85 @@
+#!/bin/sh
+source ~/.config/bspwm/panel.cfg
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+  printf "%s\n" "The panel is already running." >&2
+  exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+bspc config top_padding $PANEL_HEIGHT
+bspc control --subscribe > "$PANEL_FIFO" &
+
+# Return color based on WiFi signal strength
+# usage: wifi_strength $DEVICE $WIFI_GOOD $WIFI_FAIR $WIFI_POOR
+wifi_strength() {
+ dev="$1"
+ signal=$(iw dev $dev link | grep signal | egrep -o '[0-9]+')
+
+ if [ $signal -lt 68 ]; then
+   color=$2
+ elif [ $signal -lt 70 ]; then
+   color=$3
+ else
+   color=$4
+ fi
+ printf "%s\n" "%{F${color}}"
+} 
+
+# Get Battery Stats
+# usage: get_bat $UNUSED $USED
+get_bat() {
+  unused=$1
+  used=$2
+  if ! acpi &>/dev/null; then
+    percent=100
+  else
+    percent=$(acpi | egrep -o [0-9]+%)
+    percent=${percent%%\%}
+  fi
+  bat=$(($percent / 20))
+  timeleft=$(acpi | egrep -o [0-9]+:[0-9]+:[0-9]+) 
+  hours=$(echo $timeleft | cut -d':' -f1)
+  minutes=$(echo $timeleft | cut -d':' -f2)
+
+  if [[ $hours == 00 ]]; then
+    printf %s "%{F#FF${RED}}$minutes"
+  else
+    stars=${unused}
+    x=1
+    while [ $x -lt $bat ]; do
+      stars=${stars}${unused}
+      x=$(($x + 1))
+    done
+
+    while [ $x -lt 5 ]; do
+      stars=${stars}${used}
+      x=$(($x + 1))
+    done
+
+    printf %s $stars
+  fi
+}
+
+
+# Loop to check time, battery and volume statuses
+while true; do
+  if [[ $(iw $WIFI link) != 'Not connected.' ]]; then
+    AP=$(iw $WIFI link | ag 'SSID: (.*)' | cut -d':' -f2)
+    AP=${AP## }
+    echo "T$(wifi_strength $WIFI $WIFI_GOOD $WIFI_FAIR $WIFI_POOR) $AP" > "$PANEL_FIFO" &
+  fi
+  BAT=$(get_bat $BATTERY_UNUSED $BATTERY_USED)
+  DATE=$(date +"%H:%M")
+  echo "I${BAT} %{F#FF${MAGENTA}} $DATE" > "$PANEL_FIFO" &
+  echo $DATE > "$PANEL_FIFO" &
+  sleep 8s
+done &
+
+cat "$PANEL_FIFO" | ~/.config/bspwm/panel_bar | bar -g ${BARWIDTH}x${BARHEIGHT}+${EDGEWIDTH} -f "$PANEL_FONT_FAMILY" -F "$FOREGROUND" -B "$BACKGROUND" &
+
+wait
