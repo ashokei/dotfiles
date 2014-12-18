@@ -31,33 +31,40 @@ wifi_strength() {
 } 
 
 # Get Battery Stats
-# usage: get_bat $UNUSED $USED
+# usage: get_bat $UNCHARGED $CHARGING $CHARGED
 get_bat() {
-  unused=$1
-  used=$2
+  uncharged=$1
+  charged=$3
+  num_stars=5
+
+  if acpi | grep Charging &>/dev/null; then
+    uncharged=$2
+  fi
+
   if ! acpi &>/dev/null; then
     percent=100
   else
     percent=$(acpi | egrep -o [0-9]+%)
     percent=${percent%%\%}
   fi
-  bat=$(($percent / 20))
+  bat=$(($percent * $num_stars / 100))
   timeleft=$(acpi | egrep -o [0-9]+:[0-9]+:[0-9]+) 
   hours=$(echo $timeleft | cut -d':' -f1)
   minutes=$(echo $timeleft | cut -d':' -f2)
 
   if [[ $hours == 00 ]]; then
-    printf %s "%{F#FF${RED}}$minutes"
+    printf %s%s $uncharged $minutes
   else
-    stars=${unused}
+    stars=${charged}
     x=1
+
     while [ $x -lt $bat ]; do
-      stars=${stars}${unused}
+      stars=${stars}${charged}
       x=$(($x + 1))
     done
 
-    while [ $x -lt 5 ]; do
-      stars=${stars}${used}
+    while [ $x -lt $num_stars ]; do
+      stars=${stars}${uncharged}
       x=$(($x + 1))
     done
 
@@ -73,7 +80,7 @@ while true; do
     AP=${AP## }
     echo "T$(wifi_strength $WIFI $WIFI_GOOD $WIFI_FAIR $WIFI_POOR) $AP" > "$PANEL_FIFO" &
   fi
-  BAT=$(get_bat $BATTERY_UNUSED $BATTERY_USED)
+  BAT=$(get_bat $BATTERY_UNCHARGED $BATTERY_CHARGING $BATTERY_CHARGED)
   DATE=$(date +"%H:%M")
   echo "I${BAT} %{F#FF${MAGENTA}} $DATE" > "$PANEL_FIFO" &
   echo $DATE > "$PANEL_FIFO" &
