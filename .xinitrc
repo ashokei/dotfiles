@@ -4,7 +4,7 @@ xset +fp ${HOME}/.fonts
 xset fp rehash
 sxhkd &
 urxvtd -q -o -f
-urxvtc -name kuake -pe default,matcher,kuake\<alt+`\> &
+urxvtc -name kuake -pe default,matcher,kuake\<F11\> &
 urxvt -pe default,matcher,-kuake -name weechat -e weechat &
 urxvt -pe default,matcher,-kuake -name twitter -e turses &
 unclutter &
