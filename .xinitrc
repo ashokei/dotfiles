@@ -1,3 +1,4 @@
+export XDG_CONFIG_HOME=/home/micro/.config
 compton -cCGf &
 xrdb ${XDG_CONFIG_HOME}/xresources
 xmodmap ${XDG_CONFIG_HOME}/xmodmap
