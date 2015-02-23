@@ -1,5 +1,5 @@
 compton -cCGf &
-xrdb -merge ${XDG_CONFIG_HOME}/xresources
+xrdb ${XDG_CONFIG_HOME}/xresources
 xmodmap ${XDG_CONFIG_HOME}/xmodmap
 xset +fp ${HOME}/.fonts
 xset fp rehash
