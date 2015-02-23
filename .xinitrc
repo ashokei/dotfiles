@@ -1,8 +1,8 @@
 export XDG_CONFIG_HOME=/home/micro/.config
 compton -cCGf &
 xrdb ${XDG_CONFIG_HOME}/xresources
-xmodmap ${XDG_CONFIG_HOME}/xmodmap
-xset +fp ${XDG_CONFIG_HOME}/../.fonts
+xmodmap ${XDG_CONFIG_HOME}/xmodmaprc
+xset +fp /home/micro/.local/share/fonts
 xset fp rehash
 xrandr --dpi 227
 sxhkd &
