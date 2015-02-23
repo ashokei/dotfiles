@@ -1,20 +1,21 @@
 #! /bin/sh
-bspc monitor LVDS1 -d www i ii iii chat
+bspc monitor eDP-0 -d www i ii iii chat
 bspc monitor DP1 -d code web app 
 bspc config border_width 2
 bspc config window_gap 5
 bspc config split_ratio 0.52
 bspc config borderless_monocle true
 bspc config gapless_monocle true
-bspc config top_padding 15
+bspc config top_padding 30
 bspc config focus_follows_pointer true
 
-for class in VirtualBox processing-app-Base fceux Wpa_gui Lxappearance; do
+for class in VirtualBox processing-app-Base fceux Wpa_gui Lxappearance sun-awt-X11-XFramePeer; do
   bspc rule -a $class floating=on
 done
 
 bspc rule -a Firefox desktop=www
 bspc rule -a weechat desktop=chat
-bspc rule -a kuake floating=on fullscreen=on
+bspc rule -a XChat desktop=chat
+bspc rule -a kuake floating=on fullscreen=on locked=on sticky=on
 
 ${HOME}/.config/bspwm/panel
