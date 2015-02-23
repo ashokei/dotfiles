@@ -88,6 +88,6 @@ while true; do
   sleep 8s
 done &
 
-cat "$PANEL_FIFO" | $(dirname $0)/panel_bar | bar -g ${BARWIDTH}x${BARHEIGHT}+${EDGEWIDTH} -f "$PANEL_FONT_FAMILY" -F "$FOREGROUND" -B "$BACKGROUND" -u $LINEHIGHT &
+cat "$PANEL_FIFO" | $(dirname $0)/panel_bar | bar -g ${BARWIDTH}x${BARHEIGHT}+${EDGEWIDTH} -f "$PANEL_FONT_FAMILY" -F "$FOREGROUND" -B "$BACKGROUND" &
 
 wait

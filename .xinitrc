@@ -2,7 +2,7 @@ export XDG_CONFIG_HOME=/home/micro/.config
 compton -cCGf &
 xrdb ${XDG_CONFIG_HOME}/xresources
 xmodmap ${XDG_CONFIG_HOME}/xmodmap
-xset +fp ${HOME}/.fonts
+xset +fp ${XDG_CONFIG_HOME}/../.fonts
 xset fp rehash
 sxhkd &
 urxvtd -q -o -f
