@@ -1,0 +1,9 @@
+[Unit]
+After=systemd-user-sessions.service
+
+[Service]
+ExecStart=/bin/su micro -l -c /usr/bin/xinit -- VT08
+ExecStartPre=-killall panel
+
+[Install]
+WantedBy=multi-user.target

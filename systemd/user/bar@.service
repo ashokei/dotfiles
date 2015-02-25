@@ -1,0 +1,10 @@
+[Unit]
+Description=a pretty little bar
+
+[Service]
+Type=simple
+Environment=DISPLAY=:%i
+ExecStart=/home/micro/.config/bspwm/panel
+
+[Install]
+WantedBy=wm@.target
