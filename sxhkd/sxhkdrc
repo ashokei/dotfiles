@@ -72,6 +72,6 @@ super + Escape
 XF86MonBrightness{Up,Down}
 	ib=/sys/class/backlight/intel_backlight; sudo tee $ib/brightness <<< $(( $(<$ib/brightness) {+,-} $(( $(<$ib/max_brightness) / 10)) )) > /dev/null; ib=
 XF86AudioMuteVolume
-	sudo amixer sset Master 0
+	amixer set Master 0
 XF86Audio{Raise,Lower}Volume
   amixer set Master 20{+,-}
