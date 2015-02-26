@@ -74,5 +74,4 @@ XF86MonBrightness{Up,Down}
 XF86AudioMuteVolume
 	sudo amixer sset Master 0
 XF86Audio{Raise,Lower}Volume
-	sudo amixer -M sset Master $(( $(sudo amixer sget Master | ag -o '[0-9]+\%' | cut -d'%' -f1 | head -1) {+,-} 20 ))
-
+  amixer set Master 20{+,-}
