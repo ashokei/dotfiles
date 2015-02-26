@@ -33,13 +33,5 @@ URxvt*color15: #d0d0d0
 
 URxvt*internalBorder: 0
 
-! \001 is ^a, \015 is enter 
-URxvt*keysym.Mod4-d: \001:split-window -h\015
-URxvt*keysym.Mod4-D: \001:split-window -v\015
-
-URxvt*keysym.Mod4-t: \001:new-window\015
-URxvt*keysym.Mod4-Right: \001:next-window\015
-URxvt*keysym.Mod4-Left: \001:previous-window\015
-
 URxvt*keysym.Mod4-u: command:\033]49;[100]#1D1F21\007
 URxvt*keysym.Mod4-U: command:\033]49;[70]#1D1F21\007
