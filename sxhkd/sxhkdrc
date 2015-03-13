@@ -56,9 +56,7 @@ super + @button{1-3}
 # wm independent hotkeys
 #
 super + Return
-	urxvtc -pe default,matcher,-tabbed,-kuake
-super + a
-	urxvt -pe default,matcher,-tabbed,-kuake -name weechat -e weechat
+	urxvtc -pe default,matcher,selection,selection-to-clipboard,-kuake
 super + z
 	sudo ${HOME}/bin/scan.sh | ${HOME}/bin/scan.py
 super + space
@@ -70,8 +68,8 @@ super + x
 super + Escape
 	pkill -USR1 -x sxhkd
 XF86MonBrightness{Up,Down}
-	ib=/sys/class/backlight/intel_backlight; sudo tee $ib/brightness <<< $(( $(<$ib/brightness) {+,-} $(( $(<$ib/max_brightness) / 10)) )) > /dev/null; ib=
+  ib=/sys/class/backlight/intel_backlight; sudo tee $ib/brightness <<< $(( $(<$ib/brightness) {+,-} $(( $(<$ib/max_brightness) / 10)) )) > /dev/null; ib=
 XF86AudioMuteVolume
-	amixer set Master 0
+  amixer set Master 0
 XF86Audio{Raise,Lower}Volume
   amixer set Master 20{+,-}

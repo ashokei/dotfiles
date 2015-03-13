@@ -1,18 +1,18 @@
 URxvt*loginShell: true
-URxvt*perl-ext-common: default,matcher,selection-to-clipboard
+URxvt*perl-ext-common: default,matcher,selection,selection-to-clipboard
 URxvt*url-launcher: /usr/bin/firefox
 URxvt*matcher.button: 1
 
 URxvt*font:xft:Inconsolata for Powerline:bold:size=22
 URxvt*saveLines:65535
 
-URxvt*depth:32
+URxvt*depth: 32
 
 URxvt*borderLess: false
 URxvt*scrollBar: false
 
 ! Molokai theme
-URxvt*background: [70]#1D1F21
+URxvt*background: [50]#1D1F21
 URxvt*foreground: #d0d0d0
 URxvt*color0: #101010
 URxvt*color1: #960050
@@ -33,5 +33,7 @@ URxvt*color15: #d0d0d0
 
 URxvt*internalBorder: 0
 
+!URxvt*backgroundPixmap: /mnt/dropbox/Dropbox/images/wallpapers/9.png
+
 URxvt*keysym.Mod4-u: command:\033]49;[100]#1D1F21\007
-URxvt*keysym.Mod4-U: command:\033]49;[70]#1D1F21\007
+URxvt*keysym.Mod4-U: command:\033]49;[50]#1D1F21\007
