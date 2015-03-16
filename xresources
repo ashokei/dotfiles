@@ -1,5 +1,5 @@
 URxvt*loginShell: true
-URxvt*perl-ext-common: default,matcher,selection,selection-to-clipboard
+URxvt*perl-ext-common: default,matcher,better-clipboard
 URxvt*url-launcher: /usr/bin/firefox
 URxvt*matcher.button: 1
 
