@@ -15,7 +15,7 @@ done
 
 bspc rule -a Firefox desktop=www
 bspc rule -a weechat desktop=chat
-bspc rule -a XChat desktop=chat
+bspc rule -a xchat desktop=chat
 bspc rule -a kuake floating=on fullscreen=on locked=on sticky=on
 
 ${HOME}/.config/bspwm/panel

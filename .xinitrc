@@ -9,4 +9,5 @@ urxvtd -q -o -f
 urxvtc -name kuake -pe default,selection,selection-to-clipboard,matcher,kuake\<XF86LaunchA\> &
 hsetroot -fill /mnt/dropbox/Dropbox/images/wallpapers/9.png
 firefox &
+xchat &
 exec bspwm
