@@ -9,7 +9,7 @@ bspc config gapless_monocle true
 bspc config top_padding 30
 bspc config focus_follows_pointer true
 
-for class in VirtualBox processing-app-Base fceux Wpa_gui Lxappearance sun-awt-X11-XFramePeer; do
+for class in VirtualBox processing-app-Base fceux Wpa_gui Lxappearance sun-awt-X11-XFramePeer fireworks; do
   bspc rule -a $class floating=on
 done
 
