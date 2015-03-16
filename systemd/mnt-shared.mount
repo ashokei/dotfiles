@@ -1,0 +1,8 @@
+[Mount]
+What=/dev/sda5
+Where=/mnt/shared
+Type=ntfs-3g
+Options=uid=micro,gid=users,permissions,auto
+
+[Install]
+WantedBy=local-fs.target
