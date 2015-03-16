@@ -1,8 +1,8 @@
 [Mount]
-What=/dev/sda5
+What=UUID=37584AA3704AC8C1
 Where=/mnt/shared
 Type=ntfs-3g
-Options=uid=micro,gid=users,permissions,auto
+Options=permissions
 
 [Install]
 WantedBy=local-fs.target
