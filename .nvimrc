@@ -23,41 +23,23 @@ call plug#begin('~/.nvim/plugged')
   Plug 'scrooloose/syntastic'
   Plug 'Valloric/YouCompleteMe'
   Plug 'vim-scripts/a.vim'
+  Plug 'tikhomirov/vim-glsl'
+  Plug 'sotte/presenting.vim'
+  Plug 'jtratner/vim-flavored-markdown'
+  Plug 'chriskempson/base16-vim'
 call plug#end()
 
-let g:syntastic_cpp_compiler_options = '-std=c++0x'
-let g:syntastic_cpp_include_dirs = [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/3d' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/communication' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/gl' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/math' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/types' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/video' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/app' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/events' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/graphics' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/sound' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openFrameworks/utils' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/cairo/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/cairo/include/cairo' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/freetype/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/glu/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/poco/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/tess2/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/fmodex/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/glew/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/glfw/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/glut/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/kiss/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/openssl/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/rtAudio/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/videoInput/include' ]
-let g:syntastic_cpp_include_dirs += [ '/mnt/shared/code/openFrameworks/libs/FreeImage/include' ]
-let g:syntastic_cpp_include_dirs += [ '/usr/include/gstreamer-1.0' ]
-let g:syntastic_cpp_include_dirs += [ '/usr/include/glib-2.0' ]
-let g:syntastic_cpp_include_dirs += [ '/usr/lib64/glib-2.0/include' ]
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_cpp_compiler_options = '-std=c++11'
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
+let g:ycm_confirm_extra_conf = 0
+
+set backspace=indent,eol,start
+set list listchars=tab:→\ ,trail:·
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+au FileType ghmarkdown let b:presenting_slide_separator = '\v(^|\n)\-{2,}'
+colorscheme base16-eighties
